@@ -1,0 +1,23 @@
+The time lapsed in order for the routers to recieve their messages makes perfect sense
+
+For the client to server network, all routers are able to send their messages to where
+it shoudl be received at the same time. But becasue router 1 can only process messages
+one at a time there it takes an extra milaseconds in order to proccess all four messages
+that were recieved at the same time. All times from the client to the server takes 1000
+ms + the extra time for the server to proccessall messages
+
+The ring topology makes sense as well. The longest path or travel distance for a package is 
+from r6 to r7. Thhat takes a total of 700 ms, but the end result is not 700 ms plus a couple 
+more to process becasue there is a point in where the the messages are sent to a router at the 
+same time, so we need to do 100 ms to send one message and another 100 ms for the other message.
+This happens at r3. So we account the longest distance + the process time + the extra 100 ms for 
+r3 sending two messages. Which gives us a total of a bit ocer 800ms
+
+The complex network works runs into the same problem that occured in the ring topology. The longest
+time needed is at least 2300 ms which is a message from r4 to r5. We can ignore r8 to r6 becasuse
+this message transfer causes no problems becasue of how fast it is able to send its message. The 
+complexity comes in with the other 2 messages. r4 can reach r1 in 1100 ms, but when that occurs r1 
+would still be sending a message to r5 that takes 1200 ms. So becasue of this wait time we must account 
+extra 100 ms. After that the proccess time for the message from r1 to r9 is proccessed durint the time
+of the message being sent from r4 to r5, which is an 800 ms proccess vs a 1200 ms process. So we account
+the longest time + plus the 100 ms overlap time + the extra process time, which gives us just above 2400 ms

@@ -24,7 +24,7 @@ void Router::add_message(int destination) {
 }
 
 void Router::tick() {
-  if (message_queue.empty() and !message_queued) {
+  if (message_queue.empty() && !message_queued) {
     return;
   }
 
